@@ -1,7 +1,8 @@
-//Github webhook secretdf
+//Github webhook secret 
 //WSC_XXXXXXXXXXXXXX
-@RestResource(urlMapping='/api/Webhooks/incoming/pushDetails/*')
-global without sharing class GithubWebhookController {
+//NEW CODEf
+@RestResource(urlMapping='/api/Webhooks/pushDetails/*')
+global with sharing class GithubWebhookController {
     
     @HttpPost
     global static void handlePost() {
@@ -9,7 +10,7 @@ global without sharing class GithubWebhookController {
         RestRequest request = RestContext.request;
         //get body
         Blob requestBody = request.requestBody;
-        
+        System.debug('requestBody'+requestBody);
         // Parse JSON data
         JSONParser parser = JSON.createParser(requestBody.toString());
         pusher ps;
@@ -42,6 +43,7 @@ global without sharing class GithubWebhookController {
         detail.Modified_Components__c = (hc != null && hc.modified != null) ? String.join(hc.modified, ',') : '';
         
         insert detail;
+        System.debug('detail ::@@'+detail);
         
         // Respond with success
         RestResponse response = RestContext.response;
