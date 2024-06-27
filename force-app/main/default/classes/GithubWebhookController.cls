@@ -1,6 +1,5 @@
 //Github webhook secret 
 //WSC_XXXXXXXXXXXXXX
-//NEW CODEfdfg
 @RestResource(urlMapping='/api/Webhooks/pushDetails/*')
 global with sharing class GithubWebhookController {
     
